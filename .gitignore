@@ -22,3 +22,6 @@
 
 !fish/
 !fish/**
+
+!bob/
+!bob/**
