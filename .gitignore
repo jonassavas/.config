@@ -1,0 +1,10 @@
+# Ignore everything by default
+*
+
+# Allow git metadata
+!.gitignore
+
+# Allow directory traversal
+!*/
+
+
