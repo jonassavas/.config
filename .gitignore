@@ -8,6 +8,9 @@
 !*/
 
 # --- Explicitly tracked configs ---
+!kitty/
+!kitty/**
+
 !nvim/
 !nvim/**
 
