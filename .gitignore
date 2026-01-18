@@ -28,3 +28,9 @@
 
 !bob/
 !bob/**
+
+!wlogout/
+!wlogout/**
+
+!swaylock/
+!swaylock/**
