@@ -13,10 +13,10 @@ if [ "$STATE" = "multi" ]; then
     hyprctl keyword monitor "DP-2,disable"
     hyprctl keyword monitor "DP-1,disable"
     hyprctl keyword monitor "HDMI-A-1,disable"
-		sleep 0.5
+		sleep 0.5 # For monitors to start/stop correctly
     # Enable the 4K TV
     hyprctl keyword monitor "HDMI-A-2,3840x2160@60,0x0,1"
-    sleep 0.5
+    sleep 0.5 # For monitors to start/stop correctly
     hyprctl dispatch workspace 1
     hyprctl dispatch centerwindow
 
@@ -28,18 +28,16 @@ else
     hyprctl keyword monitor "HDMI-A-2,disable"
 
     # Re-enable the three monitors
-
     hyprctl keyword monitor "HDMI-A-1,1920x1080@60,0x0,1"
-   	sleep 2.0 
 		hyprctl keyword monitor "DP-2,1920x1080@144,-1920x0,1"
-    #hyprctl keyword monitor "HDMI-A-1,1920x1080@60,0x0,1"
     hyprctl keyword monitor "DP-1,1920x1080@60,1920x0,1"
-
-		sleep 2.0
+		
+		# Reapplying the resolution avoided a bug with the
+		# HDMI monitor.
+		sleep 0.5
+		hyprctl keyword monitor "HDMI-A-1,1920x1080@60,0x0,1"
 		hyprctl keyword monitor "DP-2,1920x1080@144,-1920x0,1"
-    hyprctl keyword monitor "HDMI-A-1,1920x1080@60,0x0,1"
     hyprctl keyword monitor "DP-1,1920x1080@60,1920x0,1"
-
 
     echo "multi" > "$STATE_FILE"
 fi

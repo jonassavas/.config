@@ -34,3 +34,6 @@
 
 !swaylock/
 !swaylock/**
+
+!dotfiles/
+!dotfiles/**
