@@ -6,13 +6,13 @@
     "passthrough": false,
     "gtk-layer-shell": true,
     "height": 50,
-    "modules-left": ["custom/launch_wofi","hyprland/workspaces","cpu","memory","disk","hyprland/window"],
+    "modules-left": ["custom/launch_wofi","hyprland/workspaces","cpu","memory","disk"], //,"hyprland/window"],
     "modules-center": ["custom/lock_screen","custom/updates","clock","custom/power_btn"],
     "modules-right": ["temperature","custom/power_profile","battery","backlight","pulseaudio","pulseaudio#microphone","tray","custom/weather","custom/light_dark"],
     
-    "hyprland/window": {
-        "format": "{}"
-    },
+//    "hyprland/window": {
+//        "format": "{}"
+//    },
 
     "custom/launch_wofi": {
         "format": "",
@@ -63,14 +63,14 @@
         "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
     },
 
-/*    "custom/updates": {
+    "custom/updates": {
         "format": "{}",
         "exec": "~/.config/waybar/scripts/update-sys",
         "on-click": "~/.config/waybar/scripts/update-sys update",
         "interval": 300,
         "tooltip": true
     },
-*/
+
 
     "hyprland/workspaces": {
         "disable-scroll": true,
