@@ -41,7 +41,7 @@ if [ "$STATE" = "multi" ]; then
     sleep 0.5
     
     # Enable TV
-    hyprctl keyword monitor "HDMI-A-2,3840x2160@60,0x0,1"
+    hyprctl keyword monitor "HDMI-A-2,3840x2160@60,0x0,2"
     sleep 0.5
     
     # Ensure we're on workspace 1
