@@ -117,11 +117,11 @@
     },
 
     "clock": {
-        "format": "{:%H:%M %d/%m}",
-        "tooltip": true,
-        //"tooltip-format": "{:  %A, %B %e %Y}"
-				"tooltip-format": "{:%A, %B %e %Y}"
-    },
+    	"format": " {:%H:%M  %d/%m}",
+    	"tooltip": true,
+    	"tooltip-format": " {:%A, %B %e %Y}"
+			//"tooltip-format": " {:%A, %B %e %Y}\n<tt>{calendar}</tt>"
+		},
 
     "backlight": {
         "device": "intel_backlight",
