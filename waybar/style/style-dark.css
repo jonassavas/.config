@@ -53,6 +53,7 @@ tooltip label{
     border-radius: 10px;
 }
 
+#language,
 #custom-launch_wofi,
 #custom-lock_screen,
 #custom-light_dark,
@@ -133,3 +134,4 @@ tooltip label{
     color: #a6e3a1;
     border-left: 0px;
 }
+
