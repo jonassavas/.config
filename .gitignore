@@ -41,3 +41,6 @@
 
 !dotfiles/
 !dotfiles/**
+
+# Explicitly ignoring annoying directories
+discord/
