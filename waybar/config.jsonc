@@ -16,7 +16,7 @@
 
     "custom/launch_wofi": {
         "format": "",
-        "on-click": "pkill wofi; wofi -n",
+        "on-click": "pkill -x wofi; wofi",
         "tooltip": false
     },
 
