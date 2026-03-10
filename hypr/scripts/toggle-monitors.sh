@@ -2,6 +2,7 @@
 
 STATE_FILE="$HOME/.config/hypr/monitor_state"
 STATE=$(cat "$STATE_FILE" 2>/dev/null || echo "multi")
+WALL_SCRIPT="$HOME/.config/hypr/scripts/apply-wallpapers.sh"
 
 kill_all_windows() {
     hyprctl clients -j | jq -r '.[].address' | while read -r addr; do
@@ -41,7 +42,7 @@ if [ "$STATE" = "multi" ]; then
     sleep 0.5
     
     # Enable TV
-    hyprctl keyword monitor "HDMI-A-2,3840x2160@60,0x0,2"
+    hyprctl keyword monitor "HDMI-A-2,3840x2160@60,0x0,2"		
     sleep 0.5
     
     # Ensure we're on workspace 1
@@ -82,3 +83,7 @@ else
     
     echo "multi" > "$STATE_FILE"
 fi
+
+# Apply wallpapers after monitor layout changes
+"$WALL_SCRIPT"
+
