@@ -21,6 +21,9 @@
 !hypr/
 !hypr/**
 
+!hypr/wallpapers/
+!hypr/wallpapers/**
+
 !waybar/
 !waybar/**
 
