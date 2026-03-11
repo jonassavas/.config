@@ -7,8 +7,8 @@
     "gtk-layer-shell": true,
     "height": 50,
     "modules-left": ["custom/launch_wofi","hyprland/workspaces","cpu","memory","disk"], //,"hyprland/window"],
-    "modules-center": ["custom/lock_screen","custom/updates","clock","custom/power_btn"],
-    "modules-right": ["hyprland/language", "temperature","custom/power_profile","battery","backlight","pulseaudio","pulseaudio#microphone","tray","custom/weather","custom/light_dark"],
+    "modules-center": ["custom/lock_screen","clock","custom/power_btn"],
+    "modules-right": ["hyprland/language", "temperature","pulseaudio","pulseaudio#microphone","tray","custom/light_dark"],
     
 //    "hyprland/window": {
 //        "format": "{}"
@@ -63,13 +63,13 @@
         "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
     },
 
-    "custom/updates": {
-        "format": "{}",
-        "exec": "~/.config/waybar/scripts/update-sys",
-        "on-click": "~/.config/waybar/scripts/update-sys update",
-        "interval": 300,
-        "tooltip": true
-    },
+    // "custom/updates": {
+    //     "format": "{}",
+    //     "exec": "~/.config/waybar/scripts/update-sys",
+    //     "on-click": "~/.config/waybar/scripts/update-sys update",
+    //     "interval": 300,
+    //     "tooltip": true
+    // },
 
 
     "hyprland/workspaces": {
@@ -123,27 +123,27 @@
 			//"tooltip-format": " {:%A, %B %e %Y}\n<tt>{calendar}</tt>"
 		},
 
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon} {percent}%",
-        "format-icons": ["󰃞", "󰃟", "󰃠"],
-        "on-scroll-up": "brightnessctl set 1%+",
-        "on-scroll-down": "brightnessctl set 1%-",
-        "min-length": 6
-    },
+    // "backlight": {
+    //     "device": "intel_backlight",
+    //     "format": "{icon} {percent}%",
+    //     "format-icons": ["󰃞", "󰃟", "󰃠"],
+    //     "on-scroll-up": "brightnessctl set 1%+",
+    //     "on-scroll-down": "brightnessctl set 1%-",
+    //     "min-length": 6
+    // },
 
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 20
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{time} {icon}",
-        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
-    },
+    // "battery": {
+    //     "states": {
+    //         "good": 95,
+    //         "warning": 30,
+    //         "critical": 20
+    //     },
+    //     "format": "{icon} {capacity}%",
+    //     "format-charging": " {capacity}%",
+    //     "format-plugged": " {capacity}%",
+    //     "format-alt": "{time} {icon}",
+    //     "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    // },
 
     "pulseaudio": {
         "format": "{icon} {volume}%",
