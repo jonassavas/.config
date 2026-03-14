@@ -94,23 +94,21 @@ border-radius: 10px 0px 0px 10px;
 }
 
 /* RIGHT EDGES */
-
+#temperature,
 #custom-light_dark,
 #custom-power_btn,
 #workspaces,
-#battery,
-#disk {
+#battery {
 border-radius: 0px 10px 10px 0px;
 margin-right: 10px;
 }
 
 /* LANGUAGE + AUDIO + TEMP GROUP */
 
-#language {
-border-radius: 10px 0px 0px 10px;
-}
+/* #language { */
+/* border-radius: 10px 0px 0px 10px; */
+/* } */
 
-#temperature,
 #pulseaudio {
 border-radius: 0px;
 }
