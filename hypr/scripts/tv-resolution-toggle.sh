@@ -52,8 +52,8 @@ fi
 # Apply the target resolution
 # --------------------------------------------------
 
-hyprctl keyword monitor "$MONITOR,disable"
-sleep 0.5
+#hyprctl keyword monitor "$MONITOR,disable"
+#sleep 0.5
 hyprctl keyword monitor "$MONITOR,$TARGET_RES"
 
 # --------------------------------------------------
