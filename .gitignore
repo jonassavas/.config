@@ -15,6 +15,9 @@
 !kitty/
 !kitty/**
 
+!wofi/
+!wofi/**
+
 !nvim/
 !nvim/**
 
