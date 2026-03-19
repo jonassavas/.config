@@ -1,39 +1,64 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 WALLDIR="$HOME/.config/hypr/wallpapers"
 
-# start swww if not running
-pgrep -x swww-daemon >/dev/null || swww-daemon
-swww query >/dev/null || swww init
+# --- Start swww daemon if not running ---
+if ! pgrep -x swww-daemon >/dev/null; then
+    swww-daemon &
+fi
 
-# get enabled monitors
+# --- Wait until swww is ready ---
+while ! swww query >/dev/null 2>&1; do
+    sleep 0.1
+done
+
+# --- Wait until Hyprland monitors are available ---
+while [ "$(hyprctl monitors -j | jq length)" -eq 0 ]; do
+    sleep 0.1
+done
+
+# --- Get enabled monitors ---
 mapfile -t MONITORS < <(hyprctl monitors -j | jq -r '.[].name')
-
 MONITOR_COUNT=${#MONITORS[@]}
 
-# pick random theme directory
+(( MONITOR_COUNT == 0 )) && exit 1
+
+# --- Get theme directories ---
 mapfile -t DIRS < <(find "$WALLDIR" -mindepth 1 -maxdepth 1 -type d)
 
-RANDOM_DIR="${DIRS[$RANDOM % ${#DIRS[@]}]}"
+(( ${#DIRS[@]} == 0 )) && exit 1
 
-# get wallpapers in directory
-mapfile -t WALLPAPERS < <(find "$RANDOM_DIR" -type f)
+# --- Pick random theme ---
+RANDOM_DIR="${DIRS[RANDOM % ${#DIRS[@]}]}"
+
+# --- Get wallpapers (filtered image types) ---
+mapfile -t WALLPAPERS < <(find "$RANDOM_DIR" -type f \( \
+    -iname "*.jpg" -o \
+    -iname "*.jpeg" -o \
+    -iname "*.png" -o \
+    -iname "*.webp" \
+\))
 
 WALL_COUNT=${#WALLPAPERS[@]}
 
-# shuffle wallpapers
-SHUFFLED=($(printf "%s\n" "${WALLPAPERS[@]}" | shuf))
+(( WALL_COUNT == 0 )) && exit 1
 
-# apply wallpapers
+# --- Shuffle wallpapers safely ---
+mapfile -t SHUFFLED < <(printf "%s\n" "${WALLPAPERS[@]}" | shuf)
+
+# --- Apply wallpapers per monitor ---
 for i in "${!MONITORS[@]}"; do
 
     if (( WALL_COUNT >= MONITOR_COUNT )); then
-        # enough wallpapers -> unique selection
         WP="${SHUFFLED[$i]}"
     else
-        # not enough -> allow duplicates
-        WP="${WALLPAPERS[$RANDOM % WALL_COUNT]}"
+        WP="${WALLPAPERS[RANDOM % WALL_COUNT]}"
     fi
 
-    swww img "$WP" --outputs "${MONITORS[$i]}"
+    swww img "$WP" \
+        --outputs "${MONITORS[$i]}" \
+        --transition-type none
+
 done
