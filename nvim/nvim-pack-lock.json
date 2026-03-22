@@ -4,6 +4,10 @@
       "rev": "57e5a8addb8c71fb063ee4acda466c7cf6ad2800",
       "src": "https://github.com/mason-org/mason.nvim"
     },
+    "mini.extra": {
+      "rev": "0ccc67319240cf8712f5f614db50c262eccd9db3",
+      "src": "https://github.com/echasnovski/mini.extra"
+    },
     "mini.pick": {
       "rev": "c488bbaa74b4b9e9ba49ebaffdd9f19b15b64a4f",
       "src": "https://github.com/echasnovski/mini.pick"

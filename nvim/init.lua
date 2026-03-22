@@ -14,10 +14,14 @@ vim.opt.incsearch = true
 vim.opt.signcolumn = "yes"
 
 vim.g.mapleader = " "
-vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
+vim.keymap.set('n', '<leader>o', function()
+  vim.cmd("update")
+  vim.cmd("source %")
+end)
 vim.keymap.set('n', '<leader>w', ':write<CR>')
 vim.keymap.set('n', '<leader>q', ':quit<CR>')
---vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
+--vim.keymap.set('n', '<leader>pv', '<cmd>Ex<CR>')
+vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y<CR>')
@@ -33,6 +37,7 @@ vim.pack.add({
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" },
 	{ src = "https://github.com/mason-org/mason.nvim" },
+	{ src = "https://github.com/echasnovski/mini.extra" },
 })
 
 -- Auto complete, creates an auto complete and tells omnicomplete about neovim lsp completion
@@ -47,8 +52,29 @@ vim.api.nvim_create_autocmd('LspAttach', {
 vim.cmd("set completeopt+=noselect")
 
 require "mason".setup()
-require "mini.pick".setup()
--- require "oil".setup()
+require("mini.pick").setup({
+  options = {
+    use_cache = true,
+  }
+})
+
+require("mini.extra").setup()
+
+require("oil").setup({
+  view_options = {
+    show_hidden = true,
+  },
+  float = {
+    max_width = 80,
+    max_height = 20,
+  },
+  keymaps = {
+    ["<CR>"] = "actions.select",
+    ["-"] = "actions.parent",
+    ["q"] = "actions.close",
+  },
+})
+
 -- require "nvim-treesitter.configs".setup({
 -- 	ensure_installed = { "lua_ls", "rust-analyzer", "clan
 -- })
@@ -70,3 +96,67 @@ vim.lsp.config("lua_ls", {
 
 vim.cmd("colorscheme vague")
 vim.cmd(":hi statusline guibg=NONE")
+
+-- LSP keymaps
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration)
+vim.keymap.set('n', 'gi', vim.lsp.buf.implementation)
+vim.keymap.set('n', 'gr', vim.lsp.buf.references)
+vim.keymap.set('n', 'K', vim.lsp.buf.hover)
+
+vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename)
+vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action)
+vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
+
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+  float = {
+    border = "rounded",
+    source = "if_many",
+  },
+})
+
+local signs = {
+  Error = "✘",
+  Warn = "▲",
+  Hint = "⚑",
+  Info = "»",
+}
+
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
+
+-- Diagnostic navigation
+vim.keymap.set('n', '[d', function()
+  vim.diagnostic.jump({ count = -1 })
+end)
+
+vim.keymap.set('n', ']d', function()
+  vim.diagnostic.jump({ count = 1 })
+end)
+
+-- Show diagnostic under cursor
+vim.keymap.set('n', '<leader>vd', function()
+  vim.diagnostic.open_float(nil, { focus = false })
+end)
+
+-- Show all diagnostics in location list
+vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist)
+
+vim.keymap.set('n', '<leader>bd', ':bd<CR>')
+vim.keymap.set('n', '<leader>bn', ':bn<CR>')
+vim.keymap.set('n', '<leader>bp', ':bp<CR>')
+
+vim.keymap.set('n', '<leader>dd', vim.diagnostic.setqflist)
+vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist)
+
+-- This needs fixing later (Diagnostics in mini.pick)
+vim.keymap.set('n', '<leader>fd', function()
+  require("mini.extra").pickers.diagnostic()
+end)
