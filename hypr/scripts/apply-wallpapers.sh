@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-WALLDIR="$HOME/.config/hypr/wallpapers"
+WALLDIR="$HOME/Pictures/wallpapers"
 
 # --- Start awww daemon if not running ---
 if ! pgrep -x awww-daemon >/dev/null; then
