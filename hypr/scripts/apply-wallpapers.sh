@@ -4,13 +4,13 @@ set -euo pipefail
 
 WALLDIR="$HOME/.config/hypr/wallpapers"
 
-# --- Start swww daemon if not running ---
-if ! pgrep -x swww-daemon >/dev/null; then
-    swww-daemon &
+# --- Start awww daemon if not running ---
+if ! pgrep -x awww-daemon >/dev/null; then
+    awww-daemon &
 fi
 
 # --- Wait until swww is ready ---
-while ! swww query >/dev/null 2>&1; do
+while ! awww query >/dev/null 2>&1; do
     sleep 0.1
 done
 
@@ -57,7 +57,7 @@ for i in "${!MONITORS[@]}"; do
         WP="${WALLPAPERS[RANDOM % WALL_COUNT]}"
     fi
 
-    swww img "$WP" \
+    awww img "$WP" \
         --outputs "${MONITORS[$i]}" \
         --transition-type none
 
