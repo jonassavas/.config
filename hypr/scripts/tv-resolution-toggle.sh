@@ -8,7 +8,7 @@ WALL_SCRIPT="$HOME/.config/hypr/scripts/apply-wallpapers.sh"
 MONITOR="HDMI-A-2"
 # Define resolutions as variables for easy tweaking
 RES_4K="3840x2160@60,0x0,2"
-RES_1440="2560x1440@120,0x0,1.25"
+RES_1440="1920x1080@120,0x0,0.75"
 # --------------------------------------------------
 # Verify TV mode is active
 # --------------------------------------------------

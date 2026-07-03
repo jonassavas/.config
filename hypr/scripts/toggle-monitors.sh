@@ -57,21 +57,21 @@ if [[ "$STATE" == "multi" ]]; then
 
     # Cleanup environment
     kill_all_windows
-    sleep 0.3
+    #sleep 0.3
     cleanup_workspaces
-    sleep 0.3
+    #sleep 0.3
 
     # Disable desktop monitors
     hyprctl keyword monitor "$MON_LEFT,disable"
     hyprctl keyword monitor "$MON_RIGHT,disable"
     hyprctl keyword monitor "$MON_CENTER,disable"
 
-    sleep 0.5
+    #sleep 0.5
 
     # Enable TV in 4K
     hyprctl keyword monitor "$TV_MONITOR,3840x2160@60,0x0,2"
 
-    sleep 0.5
+    #sleep 0.5
 
     # Ensure workspace 1 is active
     hyprctl dispatch workspace 1
@@ -84,28 +84,28 @@ else
 
     # Cleanup environment
     kill_all_windows
-    sleep 0.3
+    #sleep 0.3
     cleanup_workspaces
-    sleep 0.3
+    #sleep 0.3
 
     # Disable TV
     hyprctl keyword monitor "$TV_MONITOR,disable"
 
-    sleep 0.3
+    #sleep 0.3
 
     # Enable desktop monitors
     hyprctl keyword monitor "$MON_CENTER,1920x1080@60,0x0,1"
     hyprctl keyword monitor "$MON_LEFT,1920x1080@144,-1920x0,1"
     hyprctl keyword monitor "$MON_RIGHT,1920x1080@60,1920x0,1"
 
-    sleep 0.5
+    #sleep 0.5
 
     # Reapply layout (HDMI reliability workaround)
-    hyprctl keyword monitor "$MON_CENTER,1920x1080@60,0x0,1"
-    hyprctl keyword monitor "$MON_LEFT,1920x1080@144,-1920x0,1"
-    hyprctl keyword monitor "$MON_RIGHT,1920x1080@60,1920x0,1"
+    #hyprctl keyword monitor "$MON_CENTER,1920x1080@60,0x0,1"
+    #hyprctl keyword monitor "$MON_LEFT,1920x1080@144,-1920x0,1"
+    #hyprctl keyword monitor "$MON_RIGHT,1920x1080@60,1920x0,1"
 
-    sleep 0.3
+    #sleep 0.3
 
     # Restore workspaces
     hyprctl dispatch workspace 2
