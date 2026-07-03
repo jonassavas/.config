@@ -45,6 +45,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	{ src = "https://github.com/rcarriga/nvim-notify" },
+	{ src = "https://github.com/akinsho/toggleterm.nvim" },
 })
 
 -- Auto complete, creates an auto complete and tells omnicomplete about neovim lsp completion
@@ -90,6 +91,14 @@ require("smear_cursor").setup({
 	distance_stop_animating = 0.5,
 	hide_target_hack = false,
 	smear_between_buffers = true,
+})
+
+require("toggleterm").setup({
+  direction = "horizontal",
+  size = 12,
+  open_mapping = [[<c-\>]],
+  persist_size = true,
+  shade_terminals = true,
 })
 
 
