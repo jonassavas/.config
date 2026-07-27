@@ -177,6 +177,20 @@ vim.lsp.config("lua_ls", {
 	}
 })
 
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+
+        if client and client:supports_method("textDocument/semanticTokens") then
+            vim.lsp.semantic_tokens.enable(true, {
+                bufnr = args.buf,
+            })
+        end
+    end,
+})
+
+
 vim.cmd("colorscheme vague")
 vim.cmd(":hi statusline guibg=NONE")
 
